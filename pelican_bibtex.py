@@ -18,7 +18,6 @@ from pelican import signals
 
 __version__ = '0.2'
 
-
 def add_publications(generator):
     """
     Populates context with a list of BibTeX publications.
@@ -70,9 +69,9 @@ def add_publications(generator):
         key = formatted_entry.key
         entry = bibdata_all.entries[key]
         year = entry.fields.get('year')
-        pdf = entry.fields.pop('pdf', None)
-        slides = entry.fields.pop('slides', None)
-        poster = entry.fields.pop('poster', None)
+        pdf = entry.fields.get('pdf', None)
+        slides = entry.fields.get('slides', None)
+        poster = entry.fields.get('poster', None)
 
         #render the bibtex string for the entry
         bib_buf = StringIO()
