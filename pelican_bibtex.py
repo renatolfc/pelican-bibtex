@@ -30,7 +30,7 @@ def add_publications(generator):
     Output
     ------
     generator.context['publications']:
-        List of tuples (key, year, text, bibtex, pdf, slides, poster).
+        List of tuples (key, year, text, bibtex, pdf, slides, poster, doi, url).
         See Readme.md for more details.
     """
     if 'PUBLICATIONS_SRC' not in generator.settings:
@@ -72,6 +72,8 @@ def add_publications(generator):
         pdf = entry.fields.get('pdf', None)
         slides = entry.fields.get('slides', None)
         poster = entry.fields.get('poster', None)
+        doi = entry.fields.get('doi', None)
+        url = entry.fields.get('url', None)
 
         #render the bibtex string for the entry
         bib_buf = StringIO()
@@ -85,7 +87,9 @@ def add_publications(generator):
                              bib_buf.getvalue(),
                              pdf,
                              slides,
-                             poster))
+                             poster,
+                             doi,
+                             url,))
 
     generator.context['publications'] = publications
 
