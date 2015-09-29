@@ -69,11 +69,11 @@ def add_publications(generator):
         key = formatted_entry.key
         entry = bibdata_all.entries[key]
         year = entry.fields.get('year')
-        pdf = entry.fields.get('pdf', None)
-        slides = entry.fields.get('slides', None)
-        poster = entry.fields.get('poster', None)
-        doi = entry.fields.get('doi', None)
-        url = entry.fields.get('url', None)
+        pdf = entry.fields.pop('pdf', None)
+        slides = entry.fields.pop('slides', None)
+        poster = entry.fields.pop('poster', None)
+        doi = entry.fields.pop('doi', None)
+        url = entry.fields.pop('url', None)
 
         #render the bibtex string for the entry
         bib_buf = StringIO()
