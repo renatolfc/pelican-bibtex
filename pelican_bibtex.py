@@ -18,6 +18,11 @@ from pelican import signals
 
 __version__ = '0.2'
 
+MONTHS = [
+    'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august',
+    'september', 'october', 'november', 'december'
+]
+
 def add_publications(generator):
     """
     Populates context with a list of BibTeX publications.
@@ -69,6 +74,11 @@ def add_publications(generator):
         key = formatted_entry.key
         entry = bibdata_all.entries[key]
         year = entry.fields.get('year')
+        month = entry.fields.get('month', '')
+        if month.lower() not in MONTHS:
+            month = 13
+        else:
+            month = MONTHS.index(month.lower())
         pdf = entry.fields.pop('pdf', None)
         slides = entry.fields.pop('slides', None)
         poster = entry.fields.pop('poster', None)
@@ -83,6 +93,7 @@ def add_publications(generator):
 
         publications.append((key,
                              year,
+                             month,
                              text,
                              bib_buf.getvalue(),
                              pdf,
