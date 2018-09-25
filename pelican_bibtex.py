@@ -79,11 +79,11 @@ def add_publications(generator):
             month = 13
         else:
             month = MONTHS.index(month.lower())
-        pdf = entry.fields.pop('pdf', None)
-        slides = entry.fields.pop('slides', None)
-        poster = entry.fields.pop('poster', None)
-        doi = entry.fields.pop('doi', None)
-        url = entry.fields.pop('url', None)
+        pdf = entry.fields.get('pdf', None)
+        slides = entry.fields.get('slides', None)
+        poster = entry.fields.get('poster', None)
+        doi = entry.fields.get('doi', None)
+        url = entry.fields.get('url', None)
 
         #render the bibtex string for the entry
         bib_buf = StringIO()
